@@ -21,7 +21,8 @@ const AdminLogin = () => {
     onSubmit: async (values, { setSubmitting }) => {
       setError('');
       try {
-        const res = await axios.post('http://localhost:5000/api/v1/auth/login', values);
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+        const res = await axios.post(`${apiUrl}/auth/login`, values);
         localStorage.setItem('adminToken', res.data.token);
         navigate('/admin/dashboard');
       } catch (err) {

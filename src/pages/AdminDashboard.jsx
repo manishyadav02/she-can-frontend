@@ -18,7 +18,8 @@ const AdminDashboard = () => {
       }
 
       try {
-        const res = await axios.get('http://localhost:5000/api/v1/admin/submissions', {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+        const res = await axios.get(`${apiUrl}/admin/submissions`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

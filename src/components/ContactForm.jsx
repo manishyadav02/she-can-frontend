@@ -29,7 +29,8 @@ const ContactForm = () => {
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       setSubmitError('');
       try {
-        await axios.post('http://localhost:5000/api/v1/forms/submit', values);
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+        await axios.post(`${apiUrl}/forms/submit`, values);
         setIsSubmitted(true);
         resetForm();
       } catch (error) {
